@@ -1,0 +1,53 @@
+body {
+  /* min-height: 100vh; */
+  background-color: #454545;
+}
+
+.rect {
+  margin-bottom: -9pro0vh;
+  padding-bottom: 90vh;
+  margin: 0 auto;
+  width: 1000px;
+  background-color: #555;
+}
+
+.text {
+  position: absolute;
+  margin: 25px auto;
+  font-size: 50px;
+  text-transform: uppercase;
+  font-family: Arial, Helvetica, sans-serif;
+  letter-spacing: -3px;
+  transition: 700ms ease;
+  font-variation-settings: "wght" 311;
+  margin-bottom: 0.8rem;
+  color: #add8e6;
+  outline: none;
+  text-align: center;
+}
+
+.text:hover {
+  font-variation-settings: "wght" 582;
+  letter-spacing: 1px;
+}
+
+.clubs {
+  position: relative;
+  height: 180px;
+  top: 150px;
+  margin-top: 90px;
+  width: 1000px;
+  background-color: #add8e6;
+  font-size: 50px;
+  text-align: center;
+}
+
+.score {
+  position: absolute;
+  margin: 0 auto;
+  top: 121.7px;
+  left: 400px;
+  width: 200px;
+  background-color: cornflowerblue;
+  text-align: center;
+}
