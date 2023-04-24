@@ -4,7 +4,10 @@ const overlay = document.querySelector(".overlay");
 const btnCloseModal = document.querySelector(".close-modal");
 const htmlBtn = `<div class="btn">Our Prediction</div>`;
 let today = new Date();
-let isStarted = false;
+let hasHappened = false;
+let currTimeStamp;
+let currDescr;
+let currEvent;
 
 const dateFormat = (date) => {
   const currDate = new Date(date * 1000);
@@ -52,32 +55,50 @@ fetch(
   .then((response) => response.json())
   .then((response) => {
     console.log(response);
-    for (let i = 0; i < 200; i++) {
+    for (let i = 0; i < response.events.length; i++) {
+      currEvent = response.events[i];
+      currTimeStamp = currEvent.startTimestamp;
+      currDescr = currEvent.status.description;
+
       if (
-        response.events[i].status.description != "Not started" &&
-        response.events[i].status.description != "Postponed"
+        currDescr != "Not started" &&
+        currDescr != "Postponed" &&
+        currDescr != "Canceled"
       ) {
-        isStarted = true;
+        hasHappened = true;
       }
-      const htmlClubs = `<p class="clubs c${i}">${response.events[i].awayTeam.name} vs ${response.events[i].homeTeam.name}
-      (${response.events[i].status.description})</p>`;
+
+      const htmlClubs = `<p class="clubs c${i}">${currEvent.awayTeam.name} vs ${currEvent.homeTeam.name}
+      (${currDescr})</p>`;
       rect.insertAdjacentHTML("beforeend", htmlClubs);
-      const htmlScore = `<p class= "score">${
-        isStarted
-          ? response.events[i].awayScore.display
-          : timeFormat(dateFormat(response.events[i].startTimestamp).getHours())
-      } ${isStarted ? "-" : ":"} ${
-        isStarted
-          ? response.events[i].homeScore.display
-          : timeFormat(
-              dateFormat(response.events[i].startTimestamp).getMinutes()
-            )
+
+      const htmlScore = `<p class= "score s${i}">${
+        hasHappened
+          ? currEvent.awayScore.display
+          : timeFormat(dateFormat(currTimeStamp).getHours())
+      } ${hasHappened ? "-" : ":"} ${
+        hasHappened
+          ? currEvent.homeScore.display
+          : timeFormat(dateFormat(currTimeStamp).getMinutes())
       }</p>`;
+
+      const htmlDate = `<p class= "dateVis">${dateFormat(
+        currTimeStamp
+      ).getDate()}/${dateFormat(currTimeStamp).getMonth() + 1}</p>`;
+
       document
         .querySelector(`.c${i}`)
         .insertAdjacentHTML("beforeend", htmlScore);
       document.querySelector(`.c${i}`).insertAdjacentHTML("beforeend", htmlBtn);
-      isStarted = false;
+      document
+        .querySelector(`.c${i}`)
+        .insertAdjacentHTML("beforeend", htmlDate);
+
+      if (hasHappened)
+        document.querySelector(`.s${i}`).style.background = "cornflowerblue";
+      else document.querySelector(`.s${i}`).style.background = "#C0C0C0";
+
+      hasHappened = false;
     }
   })
   .catch((err) => console.error(err))

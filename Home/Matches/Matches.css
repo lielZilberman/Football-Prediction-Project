@@ -4,8 +4,8 @@ body {
 }
 
 .rect {
-  margin-bottom: -9pro0vh;
-  padding-bottom: 90vh;
+  margin-bottom: -1000vh;
+  padding-bottom: 1000vh;
   margin: 0 auto;
   width: 1000px;
   background-color: #555;
@@ -34,8 +34,8 @@ body {
 .clubs {
   position: relative;
   height: 180px;
-  top: 150px;
-  margin-top: 90px;
+  top: 260px;
+  margin-top: 230px;
   width: 1000px;
   background-color: #add8e6;
   font-size: 50px;
@@ -114,4 +114,14 @@ body {
   cursor: pointer;
   border: none;
   background: none;
+}
+
+.dateVis {
+  margin: 0 auto;
+  bottom: 180px;
+  position: absolute;
+  left: 400px;
+  background-color: #add8e6;
+  width: 200px;
+  text-align: center;
 }
