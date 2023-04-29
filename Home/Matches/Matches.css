@@ -1,6 +1,9 @@
 body {
   /* min-height: 100vh; */
   background-color: #454545;
+  /* background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)),
+    url(grass.jpg); */
+  background-image: url(images/grass.jpg);
 }
 
 .rect {
@@ -12,7 +15,6 @@ body {
 }
 
 .text {
-  position: absolute;
   margin: 25px auto;
   font-size: 50px;
   text-transform: uppercase;
@@ -21,7 +23,7 @@ body {
   transition: 700ms ease;
   font-variation-settings: "wght" 311;
   margin-bottom: 0.8rem;
-  color: #add8e6;
+  color: #50c878;
   outline: none;
   text-align: center;
 }
@@ -34,10 +36,10 @@ body {
 .clubs {
   position: relative;
   height: 180px;
-  top: 260px;
+  top: 50px;
   margin-top: 230px;
   width: 1000px;
-  background-color: #add8e6;
+  background-color: #50c878;
   font-size: 50px;
   text-align: center;
 }
@@ -48,7 +50,6 @@ body {
   top: 121.7px;
   left: 400px;
   width: 200px;
-  background-color: cornflowerblue;
   text-align: center;
 }
 
@@ -121,7 +122,7 @@ body {
   bottom: 180px;
   position: absolute;
   left: 400px;
-  background-color: #add8e6;
+  background-color: #50c878;
   width: 200px;
   text-align: center;
 }

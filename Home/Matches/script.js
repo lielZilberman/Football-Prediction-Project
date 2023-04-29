@@ -95,7 +95,7 @@ fetch(
         .insertAdjacentHTML("beforeend", htmlDate);
 
       if (hasHappened)
-        document.querySelector(`.s${i}`).style.background = "cornflowerblue";
+        document.querySelector(`.s${i}`).style.background = "#088F8F";
       else document.querySelector(`.s${i}`).style.background = "#C0C0C0";
 
       hasHappened = false;
