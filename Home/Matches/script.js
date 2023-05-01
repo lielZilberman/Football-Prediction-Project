@@ -19,19 +19,12 @@ const timeFormat = (time) => {
   return time;
 };
 
-const scrollModal = () => {
-  modal.style.top = `${window.scrollY + 270}px`;
-  overlay.style.top = `${window.scrollY}px`;
-};
-
 const openModal = function () {
-  // document.body.style.position = "fixed";
-  modal.style.top = `${window.scrollY + 270}px`;
-  overlay.style.top = `${window.scrollY}px`;
   modal.classList.remove("hidden");
   overlay.classList.remove("hidden");
-  document.body.classList.add(".stop-scrolling");
-  window.addEventListener("scroll", scrollModal);
+  modal.style.position = "fixed";
+  modal.style.zIndex = "100";
+  overlay.style.position = "fixed";
 };
 
 const closeModal = function () {
