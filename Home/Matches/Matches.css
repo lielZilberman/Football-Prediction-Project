@@ -1,9 +1,8 @@
 body {
   /* min-height: 100vh; */
   background-color: #454545;
-  /* background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)),
-    url(grass.jpg); */
-  background-image: url(images/grass.jpg);
+  background-image: linear-gradient(rgba(4, 9, 30, 0.7), rgba(4, 9, 30, 0.7)),
+    url(images/grass.jpg);
 }
 
 .rect {
