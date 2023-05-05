@@ -6,8 +6,6 @@ body {
 }
 
 .rect {
-  margin-bottom: -1000vh;
-  padding-bottom: 1000vh;
   margin: 0 auto;
   width: 1000px;
   background-color: #555;
@@ -53,9 +51,6 @@ body {
 }
 
 .btn {
-  position: absolute;
-  top: 80px;
-  right: 50px;
   display: inline-block;
   outline: 0;
   border: none;
@@ -68,12 +63,18 @@ body {
   color: #fff;
   text-align: center;
   line-height: normal;
-  background: linear-gradient(90deg, #5522fa 0, #0074e4 100%);
+  background: linear-gradient(90deg, #011c0f 0, #02111f 100%);
   border-radius: 50px;
   transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
 }
 .btn:hover {
   box-shadow: 0 0 0 0.15rem #5ceace;
+}
+
+.pre {
+  position: absolute;
+  top: 80px;
+  right: 50px;
 }
 
 .hidden {
@@ -124,4 +125,28 @@ body {
   background-color: #50c878;
   width: 200px;
   text-align: center;
+}
+
+.box {
+  position: absolute;
+  left: 630px;
+  top: 100px;
+}
+
+.box select {
+  background-color: #50c878;
+  color: white;
+  padding: 12px;
+  width: 250px;
+  border: none;
+  font-size: 20px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  -webkit-appearance: button;
+  appearance: button;
+  outline: none;
+  cursor: pointer;
+}
+
+.box select option {
+  padding: 30px;
 }

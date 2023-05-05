@@ -1,24 +1,34 @@
+//Variables//
 const rect = document.querySelector(".rect");
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
 const btnCloseModal = document.querySelector(".close-modal");
-const htmlBtn = `<div class="btn">Our Prediction</div>`;
+const selBtn = document.querySelector(".sel");
+const select = document.querySelector("#select");
+const htmlBtn = `<div class="btn pre">Our Prediction</div>`;
+const countrySet = new Set();
 let today = new Date();
 let hasHappened = false;
 let currTimeStamp;
 let currDescr;
+let todaysEvent;
 let currEvent;
 
+//Side functions//
+
+//Using this to get the date out of a timestamp
 const dateFormat = (date) => {
   const currDate = new Date(date * 1000);
   return currDate;
 };
 
+//Returns a good looking time format - if 3 hours and 5 minutes -> 03:05, if 13 hours and 15 minutes -> 13:15
 const timeFormat = (time) => {
   if (time / 10 < 1) return `0${time}`;
   return time;
 };
 
+//Makes the modal visible and sticky
 const openModal = function () {
   modal.classList.remove("hidden");
   overlay.classList.remove("hidden");
@@ -27,11 +37,13 @@ const openModal = function () {
   overlay.style.position = "fixed";
 };
 
+//Makes the modal unvisible
 const closeModal = function () {
   modal.classList.add("hidden");
   overlay.classList.add("hidden");
 };
 
+//Requesting data out of the API
 const options = {
   method: "GET",
   headers: {
@@ -39,17 +51,19 @@ const options = {
     "X-RapidAPI-Host": "footapi7.p.rapidapi.com",
   },
 };
+//Using today's date to get today's matches
 fetch(
-  `https://footapi7.p.rapidapi.com/api/matches/top/${today.getDate()}/${
+  `https://footapi7.p.rapidapi.com/api/matches/${today.getDate()}/${
     today.getMonth() + 1
   }/${today.getFullYear()}`,
   options
 )
   .then((response) => response.json())
   .then((response) => {
+    todaysEvent = response.events;
     console.log(response);
     for (let i = 0; i < response.events.length; i++) {
-      currEvent = response.events[i];
+      currEvent = todaysEvent[i];
       currTimeStamp = currEvent.startTimestamp;
       currDescr = currEvent.status.description;
 
@@ -96,10 +110,29 @@ fetch(
   })
   .catch((err) => console.error(err))
   .finally(() => {
-    for (let i = 0; i < document.querySelectorAll(".btn").length; i++)
-      document.querySelectorAll(".btn")[i].addEventListener("click", openModal);
+    for (let i = 0; i < document.querySelectorAll(".pre").length; i++)
+      document.querySelectorAll(".pre")[i].addEventListener("click", openModal);
 
     btnCloseModal.addEventListener("click", closeModal);
+
+    for (let i = 0; i < todaysEvent.length; i++) {
+      countrySet.add(todaysEvent[i].tournament.category.name);
+    }
+    countrySet.forEach((country) => {
+      const countryHTML = `<option>${country}</option>`;
+      select.insertAdjacentHTML("beforeend", countryHTML);
+    });
+    selBtn.addEventListener("click", () => {
+      for (let i = 0; i < todaysEvent.length; i++) {
+        if (select.value == "All") {
+          document.querySelector(`.c${i}`).classList.remove("hidden");
+        } else if (select.value != todaysEvent[i].tournament.category.name) {
+          document.querySelector(`.c${i}`).classList.add("hidden");
+        } else {
+          document.querySelector(`.c${i}`).classList.remove("hidden");
+        }
+      }
+    });
   });
 // fetch("https://footapi7.p.rapidapi.com/api/team/2672/image", options)
 //   .then((response) => response.json())
