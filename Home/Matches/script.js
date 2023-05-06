@@ -3,7 +3,7 @@ const rect = document.querySelector(".rect");
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
 const btnCloseModal = document.querySelector(".close-modal");
-const selBtn = document.querySelector(".sel");
+const loader = document.querySelector(".loader-wrap");
 const select = document.querySelector("#select");
 const htmlBtn = `<div class="btn pre">Our Prediction</div>`;
 const countrySet = new Set();
@@ -67,6 +67,10 @@ fetch(
       currTimeStamp = currEvent.startTimestamp;
       currDescr = currEvent.status.description;
 
+      if (currEvent.tournament.category.name.includes("Amateur")) {
+        continue;
+      }
+
       if (
         currDescr != "Not started" &&
         currDescr != "Postponed" &&
@@ -116,14 +120,17 @@ fetch(
     btnCloseModal.addEventListener("click", closeModal);
 
     for (let i = 0; i < todaysEvent.length; i++) {
-      countrySet.add(todaysEvent[i].tournament.category.name);
+      if (!todaysEvent[i].tournament.category.name.includes("Amateur"))
+        countrySet.add(todaysEvent[i].tournament.category.name);
     }
     countrySet.forEach((country) => {
       const countryHTML = `<option>${country}</option>`;
       select.insertAdjacentHTML("beforeend", countryHTML);
     });
-    selBtn.addEventListener("click", () => {
+    select.addEventListener("change", () => {
       for (let i = 0; i < todaysEvent.length; i++) {
+        if (todaysEvent[i].tournament.category.name.includes("Amateur"))
+          continue;
         if (select.value == "All") {
           document.querySelector(`.c${i}`).classList.remove("hidden");
         } else if (select.value != todaysEvent[i].tournament.category.name) {
@@ -133,7 +140,9 @@ fetch(
         }
       }
     });
-  });
+  })
+  .then(() => (loader.style.display = "none"));
+
 // fetch("https://footapi7.p.rapidapi.com/api/team/2672/image", options)
 //   .then((response) => response.json())
 //   .then((response) => console.log(response))
