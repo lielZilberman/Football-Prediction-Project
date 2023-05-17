@@ -1,0 +1,84 @@
+html {
+    font-family: 'Jost', sans-serif !important;
+}
+
+nav {
+    padding: 0 24px;
+}
+
+nav.navBar {
+    background-color: black;
+}
+
+.brand-logo {
+    color: yellow !important;
+    width: 100%;
+}
+
+.brand-logo img {
+    width: 48px;
+    height: 48px;
+    margin: 8px 0;
+    margin-right: 24px;
+}
+
+label {
+    left: 0 !important;
+}
+
+form.predictionForm table tr td:nth-child(1) {
+    border-right: 0.5px rgba(0, 0, 0, 0.2) solid;
+    padding-right: 20px !important;
+}
+
+form.predictionForm table tr td:nth-child(2) {
+    border-left: 0.5px rgba(0, 0, 0, 0.2) solid;
+    padding-left: 20px !important;
+}
+
+form.predictionForm table tr {
+    border-bottom: 0 !important;
+}
+
+form.predictionForm .input-field {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+}
+
+form.predictionForm .input-field input[type=range]{
+  margin-top: 24px !important;
+}
+
+.btn {
+    background-color: black;
+    color: yellow;
+}
+
+.btn:hover {
+    background-color: #333;
+}
+
+.prob-container {
+    height: 100%;
+    padding: 0 !important;
+}
+
+.prob-container .prob-title {
+    color: white;
+    line-height: 36px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.prob-container .prob-value {
+    color: white;
+    font-size: 24px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#toast-container {
+  left: auto !important;
+  right: 20px !important;
+  top: 10px !important;
+}
