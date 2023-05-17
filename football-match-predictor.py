@@ -98,7 +98,7 @@ it_data_folder = 'italian-serie-a_zip'
 data_folders = [en_data_folder, es_data_folder,
                 fr_data_folder, ge_data_folder, it_data_folder]
 
-season_range = (9, 18)
+season_range = (9, 22)
 
 data_files = []
 for data_folder in data_folders:
