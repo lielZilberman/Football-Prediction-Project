@@ -1,0 +1,340 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Football Match Predictor</title>
+
+        <!-- Compiled and minified CSS -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+        />
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500;600&display=swap"
+            rel="stylesheet"
+        />
+
+        <link rel="stylesheet" href="{% static "web/index.css" %}"/>
+    </head>
+    <body onload="init()">
+        <nav class="navBar">
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo valign-wrapper">
+                    <img class="left v-align" src="{% static "web/soccer-gear.png" %}" /> Football
+                    Match Predictor
+                </a>
+            </div>
+        </nav>
+
+        <div class="container section">
+            <div class="card center">
+                <div class="card-image">
+                    <img style="background-size: cover; background-position: center;
+                    background-image: url({% static "web/flat-card-image.jpg" %});" height="200px"
+                    />
+                    <span class="card-title">Select Half-Time Stats</span>
+                </div>
+                <form
+                    class="card-content predictionForm"
+                    id="predictionForm"
+                    onsubmit="return false;"
+                >
+                    <table>
+                        <tr>
+                            <td>
+                                <div class="input-field col s12">
+                                    <select id="homeTeam" name="homeTeam" required>
+                                        <!-- <option value="" disabled selected>Select Home Team</option> -->
+                                        {% for team, index in home_teams.items %}
+                                        <option value="{{ index }}">{{ team }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <label>Home Team</label>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-field col s12">
+                                    <select id="awayTeam" name="awayTeam" required>
+                                        <!-- <option value="" disabled selected>Select Away Team</option> -->
+                                        {% for team, index in away_teams.items %}
+                                        <option value="{{ index }}">{{ team }}</option>
+                                        {% endfor %}
+                                    </select>
+                                    <label>Away Team</label>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="input-field col s12">
+                                    <label for="homeGoals">Goals: <span>0</span></label>
+                                    <br/>
+                                    <input
+                                        id="homeGoals"
+                                        name="homeGoals"
+                                        type="range"
+                                        min="0"
+                                        max="10"
+                                        value="0"
+                                    />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-field col s12">
+                                    <label for="awayGoals">Goals: <span>0</span></label>
+                                    <br/>
+                                    <input
+                                        id="awayGoals"
+                                        name="awayGoals"
+                                        type="range"
+                                        min="0"
+                                        max="10"
+                                        value="0"
+                                    />
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="input-field col s12">
+                                    <label for="homeShots">Shots: <span>0</span></label>
+                                    <br/>
+                                    <input
+                                        id="homeShots"
+                                        name="homeShots"
+                                        type="range"
+                                        min="0"
+                                        max="50"
+                                        value="0"
+                                    />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-field col s12">
+                                    <label for="awayShots">Shots: <span>0</span></label>
+                                    <br/>
+                                    <input
+                                        id="awayShots"
+                                        name="awayShots"
+                                        type="range"
+                                        min="0"
+                                        max="50"
+                                        value="0"
+                                    />
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="input-field col s12">
+                                    <label for="homeShotsOnTarget">Shots on target: <span>0</span></label>
+                                    <br/>
+                                    <input
+                                        id="homeShotsOnTarget"
+                                        name="homeShotsOnTarget"
+                                        type="range"
+                                        min="0"
+                                        max="50"
+                                        value="0"
+                                    />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-field col s12">
+                                    <label for="awayShotsOnTarget">Shots on target: <span>0</span></label>
+                                    <br/>
+                                    <input
+                                        id="awayShotsOnTarget"
+                                        name="awayShotsOnTarget"
+                                        type="range"
+                                        min="0"
+                                        max="50"
+                                        value="0"
+                                    />
+                                </div>
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>
+                                <div class="input-field col s12">
+                                    <label for="homeRedCards">Red Cards: <span>0</span></label>
+                                    <br/>
+                                    <input
+                                        id="homeRedCards"
+                                        name="homeRedCards"
+                                        type="range"
+                                        min="0"
+                                        max="11"
+                                        value="0"
+                                    />
+                                </div>
+                            </td>
+                            <td>
+                                <div class="input-field col s12">
+                                    <label for="awayRedCards">Red Cards: <span>0</span></label>
+                                    <br/>
+                                    <input
+                                        id="awayRedCards"
+                                        name="awayRedCards"
+                                        type="range"
+                                        min="0"
+                                        max="11"
+                                        value="0"
+                                    />
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <br />
+
+                    <span>Select Classifier:</span>
+                    <div class="row">
+                        <div class="col s4">
+                            <label class="tooltipped" data-position="bottom" data-tooltip="Naive Results" >
+                                <input class="with-gap tooltipped" name="classifier" value="nb" type="radio"/>
+                                <span>Naive Bayes</span>
+                            </label>
+                        </div>
+                        <div class="col s4">
+                            <label class="tooltipped" data-position="bottom" data-tooltip="Optimistic Results" >
+                                <input class="with-gap" name="classifier" value="lr" type="radio"/>
+                                <span>Logistical Regression One vs Rest</span>
+                            </label>
+                        </div>
+                        <div class="col s4">
+                            <label class="tooltipped" data-position="bottom" data-tooltip="Pragmatic Results" >
+                                <input class="with-gap" name="classifier" value="rf" type="radio" checked/>
+                                <span>Random Forest</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <br />
+
+                    <button id="predictBtn" class="btn waves-effect waves-light" onclick="predict()">
+                        Predict Result
+                        <i class="material-icons right">send</i>
+                    </button>
+
+                    <div id="resultContainer" class="row" style="height: 80px; display: none;">
+                        <br />
+                        <br />
+
+                        <div
+                            id="homeWinProbability"
+                            class="col blue prob-container"
+                            style="width: 33.3%;"
+                        >
+                            <span class="prob-title">Home Win</span>
+                            <br />
+                            <span class="prob-value">33.3%</span>
+                        </div>
+                        <div
+                            id="drawProbability"
+                            class="col green prob-container"
+                            style="width: 33.3%;"
+                        >
+                            <span class="prob-title">Draw</span>
+                            <br />
+                            <span class="prob-value">33.3%</span>
+                        </div>
+                        <div
+                            id="awayWinProbability"
+                            class="col red prob-container"
+                            style="width: 33.3%;"
+                        >
+                            <span class="prob-title">Away Win</span>
+                            <br />
+                            <span class="prob-value">33.3%</span>
+                        </div>
+                    </div>
+
+                    <br />
+                </form>
+            </div>
+        </div>
+
+        <center>
+            <a
+                style="text-decoration: underline;"
+                href="https://github.com/AzeeSoft/football-match-predictor"
+                target="blank"
+            >
+                View Source on GitHub</a
+            >
+        </center>
+
+        <br/>
+
+        <!-- Scripts -->
+
+        <script
+            src="https://code.jquery.com/jquery-3.5.0.min.js"
+            integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+            crossorigin="anonymous"
+        ></script>
+
+        <!-- Compiled and minified JavaScript -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+        <script>
+            function init() {
+                M.AutoInit();
+
+                $('.tooltipped').tooltip();
+
+                var predictionForm = $('#predictionForm');
+
+                predictionForm.find('input[type=range]').change((e) => {
+                    var inputObj = $(e.target);
+                    inputObj.siblings('label').find('span').html(inputObj.val());
+                });
+            }
+
+            function probToPercentStr(prob) {
+                return (Math.floor((prob * 100) * 100) / 100) + '%';
+            }
+
+            function predict() {
+                var predictionForm = $('#predictionForm');
+
+                var formData = predictionForm.serialize();
+                console.log(formData);
+
+                M.toast({html: 'Processing...'});
+                $('#predictBtn').prop('disabled', true);
+
+                $.get('/api/predict', formData, (res) => {
+                    console.log(res);
+                    $('#predictBtn').prop('disabled', false);
+
+                    if (res.success) {
+                        $('#homeWinProbability').css('width', probToPercentStr(res.data.homeWin))
+                        $('#homeWinProbability .prob-value').html(probToPercentStr(res.data.homeWin))
+
+                        $('#drawProbability').css('width', probToPercentStr(res.data.draw))
+                        $('#drawProbability .prob-value').html(probToPercentStr(res.data.draw))
+
+                        $('#awayWinProbability').css('width', probToPercentStr(res.data.awayWin))
+                        $('#awayWinProbability .prob-value').html(probToPercentStr(res.data.awayWin))
+
+                        $("#resultContainer").show();
+
+                        M.toast({html: res.msg});
+                    } else {
+                        M.toast({html: 'Error: ' + res.msg});
+                    }
+                });
+            }
+        </script>
+    </body>
+</html>
