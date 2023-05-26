@@ -1,3 +1,5 @@
+import json
+
 from sklearn.decomposition import PCA
 from sklearn.ensemble import RandomForestClassifier, StackingClassifier, BaggingClassifier, AdaBoostClassifier, \
     GradientBoostingClassifier
@@ -58,8 +60,8 @@ def model(clf, X_train, y_train, X_test, y_test):
     print("-" * 20)
     print("F1 Score:{}".format(f1))
     print("Accuracy:{}".format(acc))
-    print("Confusion Matrix:")
-    print(confusion_matrix(y_test, clf.predict(X_test,)))
+    # print("Confusion Matrix:")
+    # print(confusion_matrix(y_test, clf.predict(X_test,)))
 
 
 def derive_clean_sheet(src):
@@ -159,6 +161,8 @@ svc_classifier = SVC(random_state=100, kernel='rbf')
 lr_classifier = LogisticRegression(multi_class='ovr', max_iter=500)
 dtClassifier = DecisionTreeClassifier()
 rfClassifier = RandomForestClassifier()
+xgbClassifier = XGBClassifier()
+adaClassifier = AdaBoostClassifier()
 
 print("Support Vector Machine")
 print("-" * 20)
@@ -182,16 +186,10 @@ print("-" * 20)
 bagged_rfClassifier = BaggingClassifier(RandomForestClassifier(), n_estimators=10)
 model(bagged_rfClassifier, X_train, Y_train, X_test, Y_test)
 
-# Create an Adaboost classifier
-adaClassifier = AdaBoostClassifier()
-
 print()
 print("Adaboost Classifier")
 print("-" * 20)
 model(adaClassifier, X_train, Y_train, X_test, Y_test)
-
-# Create an XGBoost classifier
-xgbClassifier = XGBClassifier()
 
 print()
 print("XGBoost Classifier")
@@ -199,7 +197,29 @@ print("-" * 20)
 model(xgbClassifier, X_train, Y_train, X_test, Y_test)
 
 
+# Exporting the Model
+print()
+print()
+shouldExport = input('Do you want to export the model(s) (y / n) ? ')
+if shouldExport.strip().lower() == 'y':
+    exportedModelsPath = 'exportedModels'
 
+    makedirs(exportedModelsPath, exist_ok=True)
+
+    dump(lr_classifier, f'{exportedModelsPath}/lr_classifier.model')
+    dump(dtClassifier, f'{exportedModelsPath}/dt_classifier.model')
+    dump(rfClassifier, f'{exportedModelsPath}/rf_classifier.model')
+    dump(xgbClassifier, f'{exportedModelsPath}/xgb_classifier.model')
+    dump(adaClassifier, f'{exportedModelsPath}/ada_classifier.model')
+
+    exportMetaData = dict()
+    exportMetaData['home_teams'] = home_encoded_mapping
+    exportMetaData['away_teams'] = away_encoded_mapping
+
+    exportMetaDataFile = open(f'{exportedModelsPath}/metaData.json', 'w')
+    json.dump(exportMetaData, exportMetaDataFile)
+
+    print(f'Model(s) exported successfully to {exportedModelsPath}/')
 
 
 

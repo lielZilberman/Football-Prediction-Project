@@ -51,6 +51,7 @@ const options = {
     "X-RapidAPI-Host": "footapi7.p.rapidapi.com",
   },
 };
+
 //Using today's date to get today's matches
 fetch(
   `https://footapi7.p.rapidapi.com/api/matches/${today.getDate()}/${
@@ -79,11 +80,10 @@ fetch(
         hasHappened = true;
       }
 
-      const htmlClubs = `<p class="clubs c${i}">${currEvent.awayTeam.name} vs ${currEvent.homeTeam.name}
-      (${currDescr})</p>`;
+      const htmlClubs = `<p class="clubs c${i}">${currEvent.awayTeam.name} vs ${currEvent.homeTeam.name} (${currDescr})</p>`;
       rect.insertAdjacentHTML("beforeend", htmlClubs);
 
-      const htmlScore = `<p class= "score s${i}">${
+      const htmlScore = `<p class="score s${i}">${
         hasHappened
           ? currEvent.awayScore.display
           : timeFormat(dateFormat(currTimeStamp).getHours())
@@ -93,17 +93,13 @@ fetch(
           : timeFormat(dateFormat(currTimeStamp).getMinutes())
       }</p>`;
 
-      const htmlDate = `<p class= "dateVis">${dateFormat(
+      const htmlDate = `<p class="dateVis">${dateFormat(
         currTimeStamp
       ).getDate()}/${dateFormat(currTimeStamp).getMonth() + 1}</p>`;
 
-      document
-        .querySelector(`.c${i}`)
-        .insertAdjacentHTML("beforeend", htmlScore);
+      document.querySelector(`.c${i}`).insertAdjacentHTML("beforeend", htmlScore);
       document.querySelector(`.c${i}`).insertAdjacentHTML("beforeend", htmlBtn);
-      document
-        .querySelector(`.c${i}`)
-        .insertAdjacentHTML("beforeend", htmlDate);
+      document.querySelector(`.c${i}`).insertAdjacentHTML("beforeend", htmlDate);
 
       if (hasHappened)
         document.querySelector(`.s${i}`).style.background = "#088F8F";
@@ -111,6 +107,34 @@ fetch(
 
       hasHappened = false;
     }
+
+    // Get the home and away team select elements
+    const homeTeamSelect = document.getElementById("homeTeam");
+    const awayTeamSelect = document.getElementById("awayTeam");
+
+    // Clear any existing options
+    homeTeamSelect.innerHTML = "";
+    awayTeamSelect.innerHTML = "";
+
+    // Populate select options with team names
+    Object.entries(home_teams).forEach(([team, index]) => {
+      const homeOption = document.createElement("option");
+      homeOption.value = index;
+      homeOption.textContent = team;
+      homeTeamSelect.appendChild(homeOption);
+    });
+
+    Object.entries(away_teams).forEach(([team, index]) => {
+      const awayOption = document.createElement("option");
+      awayOption.value = index;
+      awayOption.textContent = team;
+      awayTeamSelect.appendChild(awayOption);
+    });
+
+    // Initialize materialize select dropdown
+    M.FormSelect.init(homeTeamSelect);
+    M.FormSelect.init(awayTeamSelect);
+
   })
   .catch((err) => console.error(err))
   .finally(() => {

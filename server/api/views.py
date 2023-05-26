@@ -18,8 +18,11 @@ def index(request: HttpRequest):
 
     classifierModels = {
         'lr': 'lr_classifier.model',
-        'nb': 'nb_classifier.model',
+        'dt': 'dt_classifier.model',
         'rf': 'rf_classifier.model',
+        'xgb': 'xgb_classifier.model',
+        'ada': 'ada_classifier.model',
+
     }
 
     try:
