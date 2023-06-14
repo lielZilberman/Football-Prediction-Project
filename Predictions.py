@@ -3,11 +3,14 @@ import xgboost as xgb
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import f1_score, confusion_matrix
 from sklearn.model_selection import train_test_split
+from sklearn.naive_bayes import GaussianNB
 from sklearn.svm import SVC
 from IPython.display import display
 from os import path, makedirs, walk
 from sklearn.preprocessing import scale, LabelEncoder
 from sklearn.ensemble import RandomForestClassifier
+from xgboost import XGBClassifier
+
 en_data_folder = 'english-premier-league_zip'
 es_data_folder = 'spanish-la-liga_zip'
 fr_data_folder = 'french-ligue-1_zip'
@@ -41,8 +44,9 @@ ge_merge_data = org_data(ge_data, ge_data_folder)
 fr_merge_data = org_data(fr_data, fr_data_folder)
 it_merge_data = org_data(it_data, it_data_folder)
 
-
-input_cols = ['home_encoded', 'away_encoded', 'FTHG', 'FTAG', 'HS', 'AS', 'HST', 'AST']
+input_cols = ['home_encoded', 'away_encoded', 'HS', 'AS', 'HST', 'AST']
+# input_cols = ['home_encoded', 'away_encoded', 'HTHG', 'HTAG', 'HS',
+#                 'AS', 'HST', 'AST', 'HR', 'AR']
 output_cols = ['FTR']
 all_cols = input_cols + output_cols
 
@@ -110,16 +114,25 @@ Xen = en_merge_data[input_cols]
 print(Xen)
 Yen = en_merge_data['FTR']
 
-Xen_train, Xen_test, Yen_train, Yen_test = train_test_split(Xen, Yen, test_size=0.2)
+Xen_train, Xen_test, Yen_train, Yen_test = train_test_split(Xen, Yen, test_size=0.2, random_state=2, stratify=Yen)
+
 svc_classifier = SVC(random_state=100, kernel='rbf')
+lr_classifier = LogisticRegression(multi_class='ovr', max_iter=500)
+nbClassifier = GaussianNB()
 rfClassifier = RandomForestClassifier()
 
-#
-# print("Support Vector Machine")
-# print("-" * 20)
-# model(svc_classifier, Xen_train, Yen_train, Xen_test, Yen_test)
-#
-# print()
-# print("Random Forest Classifier")
-# print("-" * 20)
-# model(rfClassifier, Xen_train, Yen_train, Xen_test, Yen_test)
+##
+print()
+print("Logistic Regression one vs All Classifier")
+print("-" * 20)
+model(lr_classifier, Xen_train, Yen_train, Xen_test, Yen_test)
+
+print()
+print("Gaussain Naive Bayes Classifier")
+print("-" * 20)
+model(nbClassifier, Xen_train, Yen_train, Xen_test, Yen_test)
+
+print()
+print("Random Forest Classifier")
+print("-" * 20)
+model(rfClassifier, Xen_train, Yen_train, Xen_test, Yen_test)
