@@ -1,14 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- Design by foolishdeveloper.com -->
-    <title>Glassmorphism login Form Tutorial in html css</title>
- 
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Football-Prediction</title>
+    <link rel="stylesheet" href="/static/style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
     <!--Stylesheet-->
     <style media="screen">
+    
       *,
 *:before,
 *:after{
@@ -18,12 +28,13 @@
 }
 body{
     background-image:linear-gradient(rgba(8, 54, 11, 0.7), rgba(4, 9, 30, 0.7)),
-    url(/static/images/background.jpg) ; /* Updated path */
+    url(images/background.jpg) ;
     background-position: center; 
     background-size: cover;
     position: relative;  
     min-height: 100vh;
     width: 100%;
+    bottom: 100px;
 }
 
 .background .shape{
@@ -32,13 +43,13 @@ body{
     position: absolute;
     border-radius: 50%;
 }
-.shape:first-child{
+/* .shape:first-child{
     background: linear-gradient(
         #1845ad,
         #23a2f6
     );
-    left: -80px;
-    top: -80px;
+    left: -40px;
+    top: -30px;
 }
 .shape:last-child{
     background: linear-gradient(
@@ -46,12 +57,42 @@ body{
         #ff512f,
         #f09819
     );
-    right: -30px;
-    bottom: -80px;
+    right: -55px;
+    bottom: -140px;
+} */
+nav {
+    display: flex;
+    justify-content: flex-end; /* Align the links to the right */
+    align-items: center;
+    background-color: transparent; /* Set the background to transparent */
+    padding: 1px;
+    position: fixed;
+    top: 28px; /* Adjusted to move the navigation bar a bit down */
+    left: 770px; /* Adjusted to move the navigation bar a bit to the left */
+    right: 0; /* Set the navigation bar to span the full width */
+    z-index: 999;
 }
+
+.nav-links ul {
+    list-style: none;
+    display: flex;
+    /* Align the links to the right */
+}
+
+.nav-links ul li {
+    margin-left: 15px; /* Adjusted to have links on the right side */
+}
+
+.nav-links ul li a {
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: 300; /* Adjusted to have normal font weight */
+}
+
 form{
-    height: 520px;
-    width: 400px;
+    margin-top: 150px; /* Add this margin to push the form content below the navigation bar */
+    height: 510px;
+    width: 390px;;
     background-color: rgba(255,255,255,0.13);
     position: absolute;
     transform: translate(-50%,-50%);
@@ -62,6 +103,7 @@ form{
     border: 2px solid rgba(255,255,255,0.1);
     box-shadow: 0 0 40px rgba(8,7,16,0.6);
     padding: 50px 35px;
+    
 }
 form *{
     font-family: 'Poppins',sans-serif;
@@ -71,45 +113,45 @@ form *{
     border: none;
 }
 form h3{
-    font-size: 32px;
+    font-size: 30px;
     font-weight: 500;
-    line-height: 42px;
+    line-height: 28px;
     text-align: center;
 }
 
 label{
     display: block;
     margin-top: 30px;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 500;
 }
 input{
     display: block;
-    height: 50px;
+    height: 40px;
     width: 100%;
     background-color: rgba(255,255,255,0.07);
     border-radius: 3px;
     padding: 0 10px;
     margin-top: 8px;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 300;
 }
 ::placeholder{
     color: #e5e5e5;
 }
 button{
-    margin-top: 50px;
+    margin-top: 40px;
     width: 100%;
     background-color: #ffffff;
     color: #080710;
     padding: 15px 0;
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 600;
     border-radius: 5px;
     cursor: pointer;
 }
 .social{
-  margin-top: 30px;
+  margin-top: 26px;
   display: flex;
 }
 .social div{
@@ -124,7 +166,7 @@ button{
 .social div:hover{
   background-color: rgba(255,255,255,0.47);
 }
-.social .go{
+.social .fb{
   margin-left: 25px;
 }
 .social i{
@@ -134,6 +176,18 @@ button{
     </style>
 </head>
 <body>
+    <nav>
+        <div class="nav-links">
+            <ul>
+                <li><a href="/static/index.html">Home</a></li>
+                <li><a href="">Matches</a></li>
+                <li><a href="/static/blog.html">Blog</a></li>
+                <li><a href="/static/login.html">Login</a></li>
+                <li><a href="../server/web/templates/web/index.html">Prediction</a></li>
+            </ul>
+        </div>
+    </nav>
+
     <div class="background">
         <div class="shape"></div>
         <div class="shape"></div>

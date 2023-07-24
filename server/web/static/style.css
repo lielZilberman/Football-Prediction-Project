@@ -13,6 +13,7 @@
     background-size: cover;
     position: relative;
   }
+
   nav {
     display: flex;
     padding: 2% 6%;
@@ -87,8 +88,110 @@
     background: #f44336;
     transition: 1s;
   }
+
+  .hero {
+    background-size: cover;
+    background-position: center center; }
+    .hero, .hero > .container > .row {
+      height: 100vh;
+      min-height: 500px; }
+    .hero.overlay:before {
+      content: "";
+      position: absolute;
+      background: rgba(0, 0, 0, 0.5);
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0; }
+    .hero h1 {
+      font-weight: 700;
+      font-size: 4rem; }
+      @media (max-width: 991.98px) {
+        .hero h1 {
+          font-size: 2.5rem; } }
+    .hero p {
+      color: rgba(255, 255, 255, 0.9); }
   
-  /* @media (max-width: 700px){
-  
-  } */
-  
+
+
+    nav {
+      display: flex;
+      justify-content: flex-end; /* Updated to position the nav bar at the top right side */
+      align-items: center;
+      background-color: transparent;
+      padding: 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 999;
+    }
+
+    .nav-links ul {
+      list-style: none;
+      display: flex;
+    }
+
+    .nav-links ul li {
+      margin-left: 15px;
+    }
+
+    .nav-links ul li a {
+      color: #ffffff;
+      text-decoration: none;
+      font-weight: 300;
+    }
+
+    .blog-content {
+      margin-top: 150px;
+      padding: 20px;
+    }
+
+    .blog-content .row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .blog-content .col {
+      width: 30%;
+      margin-bottom: 20px;
+      position: relative; /* Added to create a relative context for the overlay */
+    }
+
+    .blog-content .col img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .blog-content .col .image-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent grey background */
+      border-radius: 10px;
+    }
+
+    .blog-content .col h2 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #ffffff; /* Set the title color to white */
+    }
+
+    .blog-content .col h3 {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 5px;
+      color: #ffffff; /* Set the subtitle color to white */
+    }
+
+    .blog-content .col p {
+      font-size: 12px;
+      line-height: 1.4;
+      color: #ffffff; /* Set the text color to white */
+    }
+    

@@ -1,0 +1,94 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+  }
+  
+  .header2 {
+    min-height: 100vh;
+    width: 100%;
+    background-image: url(images/bg_3.jpg);
+    background-position: center;
+    background-color: rgba(0, 0, 0, 0.7);
+    background-size: cover;
+    position: relative;
+  }
+  
+  /* Add a dark overlay to the background image */
+  .header2::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust the opacity to control the darkness */
+  }
+  
+  /* Set the green dark background color to the entire blog content section */
+  .blog-content {
+    margin-top: 0; /* Remove the margin-top */
+    padding: 50px 20px; /* Add padding to push the content down and fill the blank space */
+    background-color: #025a24; /* Fallback color for non-supported browsers */
+    background-image: linear-gradient(to bottom, #747272, #025a24);
+  }
+  
+  .blog-content .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  /* Set the Latest Blog heading to white with the same font as the navigation bar */
+  .heading {
+    font-family: "Poppins", sans-serif;
+    font-size: 23px;
+    font-weight: 400;
+    color: #ffffff;
+    margin-bottom: 20px;
+    letter-spacing: 0.5px; /* Add letter spacing of 1px */
+  }
+  
+  
+  /* Rest of the styles remain the same */
+  
+  .blog-content .col {
+      width: 30%;
+      margin-bottom: 20px;
+      position: relative;
+  }
+  
+  /* Adjust the size of images and details for the desired layout */
+  .blog-content .col img {
+      width: 100%;
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 10px;
+  }
+  
+  .blog-content .col h2 {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #ffffff; /* Set the title color to white */
+  }
+  
+  .blog-content .col h3 {
+      font-size: 14px;
+      font-weight: 500;
+      margin-bottom: 5px;
+      color: #ffffff; /* Set the subtitle color to white */
+  }
+  
+  .blog-content .col p {
+      font-size: 12px;
+      line-height: 1.4;
+      color: #ffffff; /* Set the text color to white */
+  }
+  
+  @media (max-width: 991.98px) {
+  /* Adjust styles for smaller screens, for example, mobile devices */
+  .blog-content .col {
+      width: 48%; /* Display two columns per row on smaller screens */
+  }
+  }
