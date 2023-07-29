@@ -142,8 +142,3 @@ fetch(
     });
   })
   .then(() => (loader.style.display = "none"));
-
-// fetch("https://footapi7.p.rapidapi.com/api/team/2672/image", options)
-//   .then((response) => response.json())
-//   .then((response) => console.log(response))
-//   .catch((err) => console.error(err));
