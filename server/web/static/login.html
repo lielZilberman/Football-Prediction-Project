@@ -43,51 +43,7 @@ body{
     position: absolute;
     border-radius: 50%;
 }
-/* .shape:first-child{
-    background: linear-gradient(
-        #1845ad,
-        #23a2f6
-    );
-    left: -40px;
-    top: -30px;
-}
-.shape:last-child{
-    background: linear-gradient(
-        to right,
-        #ff512f,
-        #f09819
-    );
-    right: -55px;
-    bottom: -140px;
-} */
-nav {
-    display: flex;
-    justify-content: flex-end; /* Align the links to the right */
-    align-items: center;
-    background-color: transparent; /* Set the background to transparent */
-    padding: 1px;
-    position: fixed;
-    top: 28px; /* Adjusted to move the navigation bar a bit down */
-    left: 770px; /* Adjusted to move the navigation bar a bit to the left */
-    right: 0; /* Set the navigation bar to span the full width */
-    z-index: 999;
-}
 
-.nav-links ul {
-    list-style: none;
-    display: flex;
-    /* Align the links to the right */
-}
-
-.nav-links ul li {
-    margin-left: 15px; /* Adjusted to have links on the right side */
-}
-
-.nav-links ul li a {
-    color: #ffffff;
-    text-decoration: none;
-    font-weight: 300; /* Adjusted to have normal font weight */
-}
 
 form{
     margin-top: 150px; /* Add this margin to push the form content below the navigation bar */
@@ -177,7 +133,8 @@ button{
 </head>
 <body>
     <nav>
-        <div class="nav-links">
+        <a href="login.html"><img src="/static/images/icon.png" /></a>
+        <div class="nav-links" >
             <ul>
                 <li><a href="/static/index.html">Home</a></li>
                 <li><a href="">Matches</a></li>
