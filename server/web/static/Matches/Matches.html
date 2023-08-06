@@ -1,33 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Matches</title>
     <script defer src="script.js"></script>
     <link rel="stylesheet" href="Matches.css" />
-  </head>
-  <body>
+</head>
+<body>
+  <nav>
+    <a href="Matches.html"><img src="/static/images/icon.png" /></a>
+    <div class="nav-links" >
+        <ul>
+            <li><a href="/static/index.html">Home</a></li>
+            <li><a href="">Matches</a></li>
+            <li><a href="/static/blog.html">Blog</a></li>
+            <li><a href="/static/login.html">Login</a></li>
+            <li><a href="/static/Matches/Matches.html">Prediction</a></li>
+        </ul>
+    </div>
+</nav>
     <div class="loader-wrap">
-      <h1 class="load-txt">Loading...</h1>
-      <div class="loader"></div>
+        <h1 class="load-txt">Loading...</h1>
+        <div class="loader"></div>
     </div>
 
     <div class="rect">
-      <h1 class="text">Upcoming Matches</h1>
-      <div class="box">
-        <select id="select">
-          <option disabled selected>Select a country</option>
-          <option>All</option>
-        </select>
-      </div>
+        <h1 class="text">Upcoming Matches</h1>
+        <div class="box">
+            <select id="select">
+                <option disabled selected>Select a country</option>
+                <option>All</option>
+            </select>
+        </div>
     </div>
+
+    <div class="matches-container">
+        <!-- Example Match Card - Replace with API data dynamically -->
+        <div class="match-card">
+            <h2>Match Title</h2>
+            <p>Date: October 15, 2023</p>
+            <p>Time: 15:00 PM</p>
+            <p>Location: Stadium Name</p>
+            <button class="view-prediction">View Prediction</button>
+        </div>
+    </div>
+
+    <!-- Modal -->
     <div class="modal hidden">
-      <button class="close-modal">&times;</button>
-      <h1>Our Prediction</h1>
-      <p>Coming soon!</p>
+        <button class="close-modal">&times;</button>
+        <h1>Our Prediction</h1>
+        <p>Coming soon!</p>
     </div>
     <div class="overlay hidden"></div>
-  </body>
+</body>
 </html>
