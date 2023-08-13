@@ -1,18 +1,10 @@
-# import keras as keras
 import pandas as pd
-# import xgboost as xgb
-from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import f1_score, confusion_matrix, accuracy_score
-from sklearn.model_selection import train_test_split, cross_val_score
-from sklearn.naive_bayes import GaussianNB, MultinomialNB
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.svm import SVC
-# from IPython.display import display
 from os import path, makedirs, walk
 from sklearn.preprocessing import scale, LabelEncoder, MinMaxScaler, StandardScaler
 from sklearn.ensemble import RandomForestClassifier
-from xgboost import XGBClassifier
-from sklearn.svm import LinearSVC
 import numpy as np
 from sklearn.neural_network import MLPClassifier
 
@@ -56,8 +48,8 @@ def compute(data):
     feature_table = data.iloc[:, :28]
 
     table_16 = pd.DataFrame(columns=('Team', 'HGS', 'AGS', 'HAS', 'AAS', 'HGC', 'AGC', 'HDS', 'ADS'))
-    table_16 = table_16[:-1]
-    res_16 = res_16[:-1]
+    # table_16 = table_16[:-1]
+    # res_16 = res_16[:-1]
 
     avg_home_scored_16 = res_16.FTHG.sum() * 1.0 / res_16.shape[0]
     avg_away_scored_16 = res_16.FTAG.sum() * 1.0 / res_16.shape[0]
@@ -138,8 +130,20 @@ es_final = es_final[['HomeTeam', 'AwayTeam', 'FTR', 'FTHG', 'FTAG', 'HS', 'AS', 
 ge_final = ge_final[['HomeTeam', 'AwayTeam', 'FTR', 'FTHG', 'FTAG', 'HS', 'AS', 'HST', 'AST', 'HC', 'AC']]
 fr_final = fr_final[['HomeTeam', 'AwayTeam', 'FTR', 'FTHG', 'FTAG', 'HS', 'AS', 'HST', 'AST', 'HC', 'AC']]
 it_final = it_final[['HomeTeam', 'AwayTeam', 'FTR', 'FTHG', 'FTAG', 'HS', 'AS', 'HST', 'AST', 'HC', 'AC']]
+en_new_fixtures = pd.DataFrame([['Southampton', 'Liverpool', 'D', 0, 0, 0, 0, 0, 0, 0, 0],
+                             ['Man United', 'Fulham', 'D', 0, 0, 0, 0, 0, 0, 0, 0],
+                             ['Leicester', 'West Ham', 'D', 0, 0, 0, 0, 0, 0, 0, 0],
+                             ['Leeds', 'Tottenham', 'D', 0, 0, 0, 0, 0, 0, 0, 0],
+                             ['Everton', 'Bournemouth', 'D', 0, 0, 0, 0, 0, 0, 0, 0],
+                             ['Crystal Palace', 'Nott Forest', 'D', 0, 0, 0, 0, 0, 0, 0, 0],
+                             ['Chelsea', 'Newcastle', 'D', 0, 0, 0, 0, 0, 0, 0, 0],
+                             ['Brentford', 'Man City', 'D', 0, 0, 0, 0, 0, 0, 0, 0],
+                             ['Aston Villa', 'Brighton', 'D', 0, 0, 0, 0, 0, 0, 0, 0],
+                             ['Arsenal', 'Wolves', 'D', 0, 0, 0, 0, 0, 0, 0, 0]], columns=en_final.columns)
+
+
 # Adding next week fixtures
-en_new_fixtures = pd.DataFrame([['Southampton', 'Liverpool', 'D', 0, 0, 0, 0, 0, 0, 0, 0]], columns=en_final.columns)
+# en_new_fixtures = pd.DataFrame([['Chelsea', 'Liverpool', 'D', 0, 0, 0, 0, 0, 0, 0, 0]], columns=en_final.columns)
 es_new_fixtures = pd.DataFrame([['Valladolid', 'Getafe', 'D', 0, 0, 0, 0, 0, 0, 0, 0]], columns=es_final.columns)
 ge_new_fixtures = pd.DataFrame([['Wolfsburg', 'Hertha', 'D', 0, 0, 0, 0, 0, 0, 0, 0]], columns=ge_final.columns)
 fr_new_fixtures = pd.DataFrame([['Troyes', 'Lille', 'D', 0, 0, 0, 0, 0, 0, 0, 0]], columns=fr_final.columns)
@@ -214,7 +218,7 @@ def handle(feat_table, table_16):
     feat_table["pastGoalDiff"] = (feat_table["pastHG"] - feat_table["pastAG"]) / 3
     feat_table["pastShotsDiff"] = (feat_table["pastHS"] - feat_table["pastAG"]) / 3
     feat_table = feat_table.fillna(0)
-    num_games = feat_table.shape[0] - 1
+    num_games = feat_table.shape[0] - 10
     v_split = 450
     n_games = num_games - v_split
     feat_table.drop(['pastHC', 'pastAS', 'pastAC', 'pastHG', 'pastAG'], axis=1)
@@ -230,16 +234,14 @@ it_final, it_n_games, it_num_games = handle(it_final, it_table16)
 
 def split(league, n_games, num_games):
     temp = league
-    X = temp[['HST', 'AST', 'pastGoalDiff', 'HAS', 'HDS', 'AAS', 'ADS']]
+    X = temp[['HS', 'AS', 'HST', 'AST', 'pastGoalDiff', 'HAS', 'HDS', 'AAS', 'ADS']]
     Y = temp['Result']
-    feature_weights = [0.05, 0.01, 0.1, 0.2, 0.3, 0.14, 0.2]
-    print(X)
-    # min_max_scaler = MinMaxScaler()
-    # X[['HST', 'AST']] = min_max_scaler.fit_transform(X[['HST', 'AST']])
-    standard_scaler = StandardScaler()
-    X[['HST', 'AST']] = standard_scaler.fit_transform(X[['HST', 'AST']])
-    X = X * feature_weights
-    print(X)
+    # feature_weights = [0.05, 0.01, 0.1, 0.2, 0.3, 0.14, 0.2]
+    min_max_scaler = MinMaxScaler()
+    X[['HS', 'AS', 'HST', 'AST']] = min_max_scaler.fit_transform(X[['HS', 'AS', 'HST', 'AST']])
+    # standard_scaler = StandardScaler()
+    # X[['HST', 'AST']] = standard_scaler.fit_transform(X[['HST', 'AST']])
+    # X = X * feature_weights
     X_train = X[0:n_games]
     y_train = Y[0:n_games]
     X_test = X[n_games:num_games - 1]
