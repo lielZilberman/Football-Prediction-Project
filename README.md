@@ -76,6 +76,7 @@ After training the algorithms we got the following accuracy results on our test 
 | La Liga | 0.5530 | 0.5788 | 0.6074 | 0.5874 |
 | Ligue 1 | 0.5072 | 0.5530 | 0.5903 | 0.5673 |
 
+
 After a close look at all the options, we made our system strong, predicting matches with high accuracy and tested the past matches to see how well they predicted real match outcomes. Since matches can end in three ways – *Home win __(H)__, Away win __(A)__, or a Draw __(D)__* – we considered all these possibilities to make our predictions even better.
 
 
