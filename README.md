@@ -106,8 +106,23 @@ To use our tool football Predition, follow these installation steps:
 
 ## File Structure
 
+Within the download you'll find the following directories and files:
 
-    
+```
+FOOTBALL-PREDICTION-PROJECT
+  ├── data
+  ├── node_modules
+  ├── server
+  |     ├── server
+  |     ├── manage.py
+  |     └── web
+  |         ├── staric
+  |         ├── server
+  |         ├── urls.py
+  |         └── views.py
+  ├── Predictions.py
+  └── package-lock.json
+```
 
 
 
