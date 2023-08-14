@@ -124,12 +124,22 @@ FOOTBALL-PREDICTION-PROJECT
   |     ├── server
   |     ├── manage.py
   |     └── web
-  |         ├── staric
+  |         ├── static
   |         ├── server
   |         ├── urls.py
   |         └── views.py
-  ├── Predictions.py
+  ├── models
+  |     ├── HandleData.py
+  |     ├── Predictions.py
+  |     └── LeagueModels
+  |           ├── EnglishPred.py
+  |           ├── FrenchPred.py
+  |           ├── ItalianPred.py
+  |           ├── SpanishPred.py
+  |           └── GermanPred.py
+  ├── Predictions3.0.py
   └── package-lock.json
+
 ```
 
 
