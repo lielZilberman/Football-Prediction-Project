@@ -51,7 +51,7 @@ const options = {
     "X-RapidAPI-Host": "footapi7.p.rapidapi.com",
   },
 };
-console.log("test!!!!!");
+console.log("svc ");
 //Using today's date to get today's matches
 fetch(
   `https://footapi7.p.rapidapi.com/api/matches/${today.getDate()}/${
@@ -140,6 +140,23 @@ fetch(
           document.querySelector(`.c${i}`).classList.remove("hidden");
         }
       }
+      
     });
   })
-  .then(() => (loader.style.display = "none"));
+  .then(() => {loader.style.display = "none"
+  if(select.value == "Italy"){}
+  fetch("http://127.0.0.1:8001/italy").then((response) => response.json())
+        .then((response) => {console.log(response)})
+  if(select.value == "England"){}
+  fetch("http://127.0.0.1:8001/england").then((response) => response.json())
+        .then((response) => {console.log(response)})
+  if(select.value == "Spain"){}
+  fetch("http://127.0.0.1:8001/spain").then((response) => response.json())
+        .then((response) => {console.log(response)})
+  if(select.value == "France"){}
+  fetch("http://127.0.0.1:8001/france").then((response) => response.json())
+        .then((response) => {console.log(response)})
+  if(select.value == "Germany"){}
+  fetch("http://127.0.0.1:8001/germany").then((response) => response.json())
+        .then((response) => {console.log(response)})
+  });
