@@ -34,19 +34,21 @@ Within this treasure trove of information, our focus is on a curated selection o
  predicting match outcomes. These features are:
 
 - **Team:** Identifying the participating teams in a match, a fundamental piece of information.
-- **HGS (Home Goal Scored):** The average number of goals scored by the home team in their past matches.
-- **AGS (Away Goal Scored):** The average number of goals scored by the away team in their recent games.
-- **HAS (Home Attack Strength):** Reflects the offensive prowess of the home team, factoring in factors like player form and strategy.
-- **AAS (Away Attack Strength):** Similar to HAS but for the away team, indicating their attacking capabilities.
-- **HGC (Home Goal Conceded):** The average number of goals conceded by the home team in previous matches.
-- **AGC (Away Goal Conceded):** The average number of goals conceded by the away team in recent games.
-- **HDS (Home Defense Strength):** Assesses the defensive resilience of the home team, considering factors such as defensive tactics and player performance.
-- **ADS (Away Defense Strength):** Analogous to HDS but focusing on the away team's defensive capabilities.
+- **HS (Home Shots):** The overall shots taken by the home team.
+- **AS (Away Shots):** The overall shots taken by the away team.
+- **HST (Home Shots On Target):** The overall shots on target taken by the home team.
+- **AST (Away Shots On Target):** The overall shots on target taken by the away team.
+
+The features above are the features provided by the dataset. This features are not enough to get good and reliable results. Because of that we added 4 more features to our machine learning algorithms:
+- **HAS (Home Attack Strength):** Average goals scored by the home team divided by the average goals scored by any home team.
+- **HDS (Home Defence Strength):** Average goals conceded by the home team divided by the average goals conceded by any home team.
+- **AAS (Away Attack Strength):** Average goals scored by the away team divided by the average goals scored by any away team.
+- **ADS (Away Defence Strength):** Average goals conceded by the away team divided by the average goals conceded by any away team.
+- **pastGoalDiff (Past Games Goal Difference):** The goal differenc in the last 3 games of a team.
+
 
 These meticulously chosen features collectively represent the core dynamics of a football match, covering attacking and defensive strengths and
  tendencies for both home and away teams. By meticulously processing and analyzing these factors, our prediction model gains a deep understanding 
 of each team's strengths and weaknesses, allowing for accurate forecasts of match outcomes.
 
-As our platform thrives on data-driven precision, each point in these features contributes significantly to our predictive algorithms.
- Our approach reflects a commitment to professionalism, data accuracy, and a passion for the sport that drives us to provide unparalleled 
-predictions for soccer enthusiasts.
+## Methods
