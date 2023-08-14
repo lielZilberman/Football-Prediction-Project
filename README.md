@@ -46,9 +46,7 @@ The features above are the features provided by the dataset. This features are n
 - **pastGoalDiff (Past Games Goal Difference):** The goal differenc in the last 3 games of a team.
 
 These meticulously chosen features collectively represent the core dynamics of a football match, covering attacking and defensive strengths and
- tendencies for both home and away teams. By meticulously processing and analyzing these factors, our prediction model gains a deep understanding 
-of each team's strengths and weaknesses, allowing for accurate forecasts of match outcomes.
-
+ tendencies for both home and away teams.
 
 ## Methods
 
@@ -60,15 +58,10 @@ As we set out to build our football match prediction system, we delved into the 
   -  **Support Vector Classification (SVC):** It's like a pattern finder, helping us predict matches, especially when they get tricky. SVC can see hidden patterns, making it useful for complicated matches.
   -  **Multi-Layer Perceptrons (MLP):** Imagine a puzzle solver – MLP is really good at finding hidden patterns in data. This helps us understand why matches end the way they do.
 
-Our predictions is based on each of the 5 leagues, so we applied all the features to each of the 5 leagues we will predict on. Each of the data is split in a way that 80% goes to the training set and the rest 20% go to test set. We used 3 different machine learning algorithms and another neural network algorithm on our data. Those algorithms are:
-- **KNearestNeighbors (44 Neighbors)**
-- **Random Forest**
-- **SVC**
-- **MLPClassifier**
+Our predictions is based on each of the 5 leagues, so we applied all the features to each of the 5 leagues we will predict on. Each of the data is split in a way that 80% goes to the training set and the rest 20% go to test set.
 After training the algorithms we got the following accuracy results on our test set:
 
-
-| League\Model | KNearestNeighbors | Random Forest | SVC | MLPClassifier |
+| League\Model | KNearestNeighbors (44 Neighbors) | Random Forest | SVC | MLPClassifier |
 |----------|----------|----------|----------|----------|
 | Premier League | 0.5473 | 0.5989 | 0.6132 | 0.5387 |
 | Serie A | 0.4756 | 0.5616 | 0.5731 | 0.5759 |
@@ -76,6 +69,7 @@ After training the algorithms we got the following accuracy results on our test 
 | La Liga | 0.5530 | 0.5788 | 0.6074 | 0.5874 |
 | Ligue 1 | 0.5072 | 0.5530 | 0.5903 | 0.5673 |
 
+As we can see by the table of acurracy results above, we can determine that SVC and Random Forest are the overall best algorithms, providing the overall best results. However, these results can vary between leagues, so there is no straight answer for which is the absolute best.
 
 After a close look at all the options, we made our system strong, predicting matches with high accuracy and tested the past matches to see how well they predicted real match outcomes. Since matches can end in three ways – *Home win __(H)__, Away win __(A)__, or a Draw __(D)__* – we considered all these possibilities to make our predictions even better.
 
