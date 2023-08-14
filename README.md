@@ -55,13 +55,26 @@ of each team's strengths and weaknesses, allowing for accurate forecasts of matc
 As we set out to build our football match prediction system, we delved into the world of machine learning techniques and strategies. By analyzing past football results, we trained various models using the `Predictions.py` to predict future match outcomes accurately. This allowed us to improve the reliability of our predictions, making match forecasting as easy as supporting your favorite team.
 
 - We explored various machine learning models – such as:
-  - **Support Vector Classification (SVC):** It's like a pattern finder, helping us predict matches, especially when they get tricky. SVC can see hidden patterns, making it useful for complicated matches.
-  -  **Logistic Regression:** This one is like a smart detective, noticing simple trends in match data. It's great at figuring out whether a team might win or not.
-  -  **Multi-Layer Perceptrons (MLP):** Imagine a puzzle solver – MLP is really good at finding hidden patterns in data. This helps us understand why matches end the way they do.
+ -  **K-Nearest Neighbors (KNN):** This one is like asking your friends for advice. KNN checks similar matches to help predict the outcome of a match.
   -  **Random Forest:** Think of a team brainstorming ideas – that's how Random Forest works. It gathers ideas from different models, making it strong at predicting match results.
-  -  **K-Nearest Neighbors (KNN):** This one is like asking your friends for advice. KNN checks similar matches to help predict the outcome of a match.
+  -  **Support Vector Classification (SVC):** It's like a pattern finder, helping us predict matches, especially when they get tricky. SVC can see hidden patterns, making it useful for complicated matches.
+  -  **Multi-Layer Perceptrons (MLP):** Imagine a puzzle solver – MLP is really good at finding hidden patterns in data. This helps us understand why matches end the way they do.
 
-By looking at historical football results, we trained these models to learn from the past and predict the future. It's like learning from your mistakes to do better next time. We also listened to feedback from users and made our models better over time, like a team that practices and improves.
+Our predictions is based on each of the 5 leagues, so we applied all the features to each of the 5 leagues we will predict on. Each of the data is split in a way that 80% goes to the training set and the rest 20% go to test set. We used 3 different machine learning algorithms and another neural network algorithm on our data. Those algorithms are:
+- **KNearestNeighbors (44 Neighbors)**
+- **Random Forest**
+- **SVC**
+- **MLPClassifier**
+After training the algorithms we got the following accuracy results on our test set:
+
+
+| League\Model | KNearestNeighbors | Random Forest | SVC | MLPClassifier |
+|----------|----------|----------|----------|----------|
+| Premier League | 0.5473 | 0.5989 | 0.6132 | 0.5387 |
+| Serie A | 0.4756 | 0.5616 | 0.5731 | 0.5759 |
+| Bundesliga | 0.5616 | 0.6046 | 0.5960 | 0.5616 |
+| La Liga | 0.5530 | 0.5788 | 0.6074 | 0.5874 |
+| Ligue 1 | 0.5072 | 0.5530 | 0.5903 | 0.5673 |
 
 After a close look at all the options, we made our system strong, predicting matches with high accuracy and tested the past matches to see how well they predicted real match outcomes. Since matches can end in three ways – *Home win __(H)__, Away win __(A)__, or a Draw __(D)__* – we considered all these possibilities to make our predictions even better.
 
