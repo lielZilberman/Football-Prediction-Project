@@ -106,7 +106,7 @@ To use our tool football Predition, follow these installation steps:
 
 2. Install all the required modules
     ```bash
-   npm install
+   pip install
 
 3. Enter into the `server` directory and run:
    ```bash
