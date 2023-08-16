@@ -9,7 +9,6 @@
 - [Demo](#demo)
 - [Installation](#installation)
 - [File Structure](#file-structure)
-- [Architecture ](#architecture)
 
 ## Introduction
 Welcome to our revolutionary football prediction project! Our goal is simple yet revolutionary: to reshape how soccer fans interact with the sport.
